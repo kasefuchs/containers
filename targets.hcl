@@ -2,7 +2,8 @@ function "make_tags" {
   params = [name, version]
   result = [
     "ghcr.io/kasefuchs/containers/${name}:latest",
-    "ghcr.io/kasefuchs/containers/${name}:${version}"
+    "ghcr.io/kasefuchs/containers/${name}:${version}",
+    "ghcr.io/kasefuchs/containers/${name}:v${version}"
   ]
 }
 
