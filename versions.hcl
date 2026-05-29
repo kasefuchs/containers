@@ -8,13 +8,13 @@ variable "versions" {
     cmake = "4.3.2"
 
     # renovate: datasource=docker depName=iceshrimp.dev/iceshrimp/iceshrimp.net extractVersion=^v(?<version>.*)$ versioning=docker
-    iceshrimp-net = "2026.1-beta"
+    iceshrimp-net = "2026.1.1-beta"
 
     # renovate: datasource=github-releases depName=canonical/pebble extractVersion=^v(?<version>.*)$
     pebble = "1.31.0"
 
     # renovate: datasource=github-releases depName=microsoft/vcpkg versioning=loosy
-    vcpkg = "2026.04.27"
+    vcpkg = "2026.05.25"
 
     # renovate: datasource=github-releases depName=Diniboy1123/usque extractVersion=^v(?<version>.*)$
     usque = "3.0.0"
