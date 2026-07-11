@@ -11,13 +11,13 @@ variable "versions" {
     iceshrimp-net = "2026.1.1-beta"
 
     # renovate: datasource=github-releases depName=canonical/pebble extractVersion=^v(?<version>.*)$
-    pebble = "1.31.0"
+    pebble = "1.32.0"
 
     # renovate: datasource=github-releases depName=microsoft/vcpkg versioning=loosy
-    vcpkg = "2026.05.25"
+    vcpkg = "2026.06.24"
 
     # renovate: datasource=github-releases depName=Diniboy1123/usque extractVersion=^v(?<version>.*)$
-    usque = "3.0.0"
+    usque = "4.2.0"
   }
 }
 
