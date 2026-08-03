@@ -19,6 +19,7 @@ target "_versions" {
     BYEDPI_VERSION        = versions.byedpi
     PEBBLE_VERSION        = versions.pebble
     ICESHRIMP_NET_VERSION = versions.iceshrimp-net
+    ICESHRIMP_OBJECTSTORAGE_VERSION = versions.iceshrimp-objectstorage
   }
 }
 

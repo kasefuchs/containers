@@ -2,13 +2,17 @@ ARG ICESHRIMP_NET_VERSION
 
 FROM --platform=$BUILDPLATFORM iceshrimp.dev/iceshrimp/dotnet-sdk:10.0-alpine AS build
 
-ARG BRANCH=main
-
 RUN apk add --no-cache git
 
 WORKDIR /app
 
-RUN git clone --branch ${BRANCH} https://iceshrimp.dev/iceshrimp/Iceshrimp.ObjectStorage.git
+ARG ICESHRIMP_OBJECTSTORAGE_VERSION
+
+RUN git init Iceshrimp.ObjectStorage \
+    && cd Iceshrimp.ObjectStorage \
+    && git remote add origin https://iceshrimp.dev/iceshrimp/Iceshrimp.ObjectStorage.git \
+    && git fetch --depth=1 origin ${ICESHRIMP_OBJECTSTORAGE_VERSION} \
+    && git checkout --detach FETCH_HEAD
 
 WORKDIR /app/Iceshrimp.ObjectStorage/src
 
