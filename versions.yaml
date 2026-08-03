@@ -1,0 +1,17 @@
+# renovate: datasource=repology depName=debian_13_backports/cmake
+cmake: "4.3.2"
+
+# renovate: datasource=github-releases depName=microsoft/vcpkg
+vcpkg: "2026.06.24"
+
+# renovate: datasource=github-releases depName=Diniboy1123/usque
+usque: "4.2.1"
+
+# renovate: datasource=docker depName=tazihad/byedpi
+byedpi: "0.17.3"
+
+# renovate: datasource=github-releases depName=canonical/pebble
+pebble: "1.32.1"
+
+# renovate: datasource=docker depName=iceshrimp.dev/iceshrimp/iceshrimp.net
+iceshrimp-net: "2026.1.2-beta"

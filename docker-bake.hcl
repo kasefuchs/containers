@@ -7,6 +7,21 @@ function "make_tags" {
   ]
 }
 
+variable "versions" {
+  type = map(string)
+}
+
+target "_versions" {
+  args = {
+    CMAKE_VERSION         = versions.cmake
+    VCPKG_VERSION         = versions.vcpkg
+    USQUE_VERSION         = versions.usque
+    BYEDPI_VERSION        = versions.byedpi
+    PEBBLE_VERSION        = versions.pebble
+    ICESHRIMP_NET_VERSION = versions.iceshrimp-net
+  }
+}
+
 target "_common" {
   inherits  = ["_versions"]
   platforms = ["linux/amd64", "linux/arm64"]

@@ -2,24 +2,6 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended",
-    ":dependencyDashboard",
-    ":gitSignOff",
-    ":semanticCommitScopeDisabled"
-  ],
-  "customManagers": [
-    {
-      "customType": "regex",
-      "versioningTemplate": "{{#if versioning}}{{versioning}}{{else}}semver{{/if}}",
-      "managerFilePatterns": ["/versions.hcl/"],
-      "matchStrings": [
-        "#\\s+renovate:\\s+datasource=(?<datasource>[^\\s]+)\\s+depName=(?<depName>[^\\s]+)(?:\\s+extractVersion=(?<extractVersion>[^\\s]+))?(?:\\s+versioning=(?<versioning>[^\\s]+))?[\\s\\n]+[^=]+=\\s*\"(?<currentValue>.*?)\""
-      ]
-    }
-  ],
-  "packageRules": [
-    {
-      "matchFileNames": ["versions.hcl"],
-      "groupName": "Docker Images Versions"
-    }
+    "github>home-operations/renovate-presets//managers/annotated.json5"
   ]
 }
