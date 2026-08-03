@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM golang:1.26.3 AS build
+FROM --platform=$BUILDPLATFORM golang:1.26.5 AS build
 
 ARG TARGETOS
 ARG TARGETARCH
@@ -16,7 +16,7 @@ WORKDIR $GOPATH/src/github.com/canonical/pebble
 
 RUN go build -o $GOPATH/bin/pebble ./cmd/pebble/
 
-FROM alpine:3.23.4
+FROM alpine:3.24.1
 
 COPY --from=build /go/bin/pebble /usr/local/bin/pebble
 

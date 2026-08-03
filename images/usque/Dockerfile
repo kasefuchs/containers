@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM golang:1.26.3 AS build
+FROM --platform=$BUILDPLATFORM golang:1.26.5 AS build
 
 ARG TARGETOS
 ARG TARGETARCH
@@ -16,7 +16,7 @@ WORKDIR $GOPATH/src/github.com/Diniboy1123/usque
 
 RUN go build -o $GOPATH/bin/usque .
 
-FROM alpine:3.23.4
+FROM alpine:3.24.1
 
 # Install curl for health checks.
 RUN apk --no-cache add curl
