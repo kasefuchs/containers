@@ -13,12 +13,13 @@ variable "versions" {
 
 target "_versions" {
   args = {
-    CMAKE_VERSION         = versions.cmake
-    VCPKG_VERSION         = versions.vcpkg
-    USQUE_VERSION         = versions.usque
-    BYEDPI_VERSION        = versions.byedpi
-    PEBBLE_VERSION        = versions.pebble
-    ICESHRIMP_NET_VERSION = versions.iceshrimp-net
+    CMAKE_VERSION                   = versions.cmake
+    VCPKG_VERSION                   = versions.vcpkg
+    USQUE_VERSION                   = versions.usque
+    BYEDPI_VERSION                  = versions.byedpi
+    PEBBLE_VERSION                  = versions.pebble
+    ALPINE_K8S_VERSION              = versions.alpine-k8s
+    ICESHRIMP_NET_VERSION           = versions.iceshrimp-net
     ICESHRIMP_OBJECTSTORAGE_VERSION = versions.iceshrimp-objectstorage
   }
 }
@@ -29,7 +30,7 @@ target "_common" {
 }
 
 group "default" {
-  targets = ["byedpi", "cmake", "iceshrimp-net", "pebble", "usque", "vcpkg"]
+  targets = ["byedpi", "cmake", "iceshrimp-net", "pebble", "usque", "vcpkg", "k8s-ci"]
 }
 
 target "byedpi" {
@@ -69,5 +70,11 @@ target "vcpkg" {
   contexts = {
     cmake = "target:cmake"
   }
+  inherits = ["_common"]
+}
+
+target "k8s-ci" {
+  tags    = make_tags("k8s-ci", versions.alpine-k8s)
+  context = "./images/k8s-ci"
   inherits = ["_common"]
 }
