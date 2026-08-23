@@ -13,8 +13,6 @@ variable "versions" {
 
 target "_versions" {
   args = {
-    CMAKE_VERSION                   = versions.cmake
-    VCPKG_VERSION                   = versions.vcpkg
     USQUE_VERSION                   = versions.usque
     BYEDPI_VERSION                  = versions.byedpi
     PEBBLE_VERSION                  = versions.pebble
@@ -30,7 +28,7 @@ target "_common" {
 }
 
 group "default" {
-  targets = ["byedpi", "cmake", "iceshrimp-net", "pebble", "usque", "vcpkg", "k8s-ci"]
+  targets = ["byedpi",  "iceshrimp-net", "pebble", "usque", "k8s-ci"]
 }
 
 target "byedpi" {
@@ -38,12 +36,6 @@ target "byedpi" {
   context   = "./images/byedpi"
   inherits  = ["_common"]
   platforms = ["linux/amd64", "linux/arm/v7", "linux/arm64", "linux/ppc64le"]
-}
-
-target "cmake" {
-  tags     = make_tags("cmake", versions.cmake)
-  context  = "./images/cmake"
-  inherits = ["_common"]
 }
 
 target "iceshrimp-net" {
@@ -61,15 +53,6 @@ target "pebble" {
 target "usque" {
   tags     = make_tags("usque", versions.usque)
   context  = "./images/usque"
-  inherits = ["_common"]
-}
-
-target "vcpkg" {
-  tags    = make_tags("vcpkg", versions.vcpkg)
-  context = "./images/vcpkg"
-  contexts = {
-    cmake = "target:cmake"
-  }
   inherits = ["_common"]
 }
 
