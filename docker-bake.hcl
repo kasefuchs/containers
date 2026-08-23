@@ -18,6 +18,7 @@ target "_versions" {
     PEBBLE_VERSION                  = versions.pebble
     ALPINE_K8S_VERSION              = versions.alpine-k8s
     ICESHRIMP_NET_VERSION           = versions.iceshrimp-net
+    GETTEXT_ENVSUBST_VERSION        = versions.gettext-envsubst
     ICESHRIMP_OBJECTSTORAGE_VERSION = versions.iceshrimp-objectstorage
   }
 }
@@ -28,7 +29,14 @@ target "_common" {
 }
 
 group "default" {
-  targets = ["byedpi",  "iceshrimp-net", "pebble", "usque", "k8s-ci"]
+  targets = [
+    "byedpi",
+    "iceshrimp-net",
+    "pebble",
+    "usque",
+    "k8s-ci",
+    "envsubst"
+  ]
 }
 
 target "byedpi" {
@@ -57,7 +65,13 @@ target "usque" {
 }
 
 target "k8s-ci" {
-  tags    = make_tags("k8s-ci", versions.alpine-k8s)
-  context = "./images/k8s-ci"
+  tags     = make_tags("k8s-ci", versions.alpine-k8s)
+  context  = "./images/k8s-ci"
+  inherits = ["_common"]
+}
+
+target "envsubst" {
+  tags     = make_tags("envsubst", versions.gettext-envsubst)
+  context  = "./images/envsubst"
   inherits = ["_common"]
 }

@@ -1,9 +1,3 @@
-# renovate: datasource=repology depName=debian_13_backports/cmake
-cmake: "4.3.2"
-
-# renovate: datasource=github-releases depName=microsoft/vcpkg
-vcpkg: "2026.06.24"
-
 # renovate: datasource=github-releases depName=Diniboy1123/usque
 usque: "4.2.1"
 
@@ -18,5 +12,7 @@ alpine-k8s: "1.36.2"
 
 # renovate: datasource=docker depName=iceshrimp.dev/iceshrimp/iceshrimp.net
 iceshrimp-net: "2026.1.2-beta"
+
+gettext-envsubst: "1.0-r0"
 
 iceshrimp-objectstorage: "ec1f626237954a3dcfb42859906e8a5693e2cb65"
