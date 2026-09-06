@@ -1,18 +1,24 @@
-# renovate: datasource=github-releases depName=Diniboy1123/usque
-usque: "4.2.1"
+# renovate: datasource=docker depName=alpine/k8s
+alpine-k8s: "1.36.2"
+
+# renovate: datasource=github-tags depName=amnezia-vpn/amneziawg-go
+amneziawg-go: "3.1.20260828"
+
+# renovate: datasource=github-releases depName=amnezia-vpn/amneziawg-tools
+amneziawg-tools: "3.1.20260812"
 
 # renovate: datasource=docker depName=tazihad/byedpi
 byedpi: "0.17.3"
 
-# renovate: datasource=github-releases depName=canonical/pebble
-pebble: "1.32.1"
-
-# renovate: datasource=docker depName=alpine/k8s
-alpine-k8s: "1.36.2"
+gettext-envsubst: "1.0-r0"
 
 # renovate: datasource=docker depName=iceshrimp.dev/iceshrimp/iceshrimp.net
 iceshrimp-net: "2026.1.2-beta"
 
-gettext-envsubst: "1.0-r0"
-
 iceshrimp-objectstorage: "ec1f626237954a3dcfb42859906e8a5693e2cb65"
+
+# renovate: datasource=github-releases depName=canonical/pebble
+pebble: "1.32.1"
+
+# renovate: datasource=github-releases depName=Diniboy1123/usque
+usque: "4.2.1"

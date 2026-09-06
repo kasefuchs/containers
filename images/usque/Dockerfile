@@ -8,11 +8,11 @@ ENV GOOS=${TARGETOS}
 ENV GOARCH=${TARGETARCH}
 ENV CGO_ENABLED=0
 
-WORKDIR $GOPATH/src/github.com/Diniboy1123
+WORKDIR $GOPATH/src
 
 RUN git clone --branch v${USQUE_VERSION} --depth 1 https://github.com/Diniboy1123/usque.git
 
-WORKDIR $GOPATH/src/github.com/Diniboy1123/usque
+WORKDIR $GOPATH/src/usque
 
 RUN go build -o $GOPATH/bin/usque .
 

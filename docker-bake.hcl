@@ -13,13 +13,15 @@ variable "versions" {
 
 target "_versions" {
   args = {
-    USQUE_VERSION                   = versions.usque
-    BYEDPI_VERSION                  = versions.byedpi
-    PEBBLE_VERSION                  = versions.pebble
     ALPINE_K8S_VERSION              = versions.alpine-k8s
-    ICESHRIMP_NET_VERSION           = versions.iceshrimp-net
+    AMNEZIAWG_GO_VERSION            = versions.amneziawg-go
+    AMNEZIAWG_TOOLS_VERSION         = versions.amneziawg-tools
+    BYEDPI_VERSION                  = versions.byedpi
     GETTEXT_ENVSUBST_VERSION        = versions.gettext-envsubst
+    ICESHRIMP_NET_VERSION           = versions.iceshrimp-net
     ICESHRIMP_OBJECTSTORAGE_VERSION = versions.iceshrimp-objectstorage
+    PEBBLE_VERSION                  = versions.pebble
+    USQUE_VERSION                   = versions.usque
   }
 }
 
@@ -30,6 +32,8 @@ target "_common" {
 
 group "default" {
   targets = [
+    "amneziawg-go",
+    "amneziawg-tools",
     "byedpi",
     "iceshrimp-net",
     "pebble",
@@ -39,11 +43,22 @@ group "default" {
   ]
 }
 
+target "amneziawg-go" {
+  tags     = make_tags("amneziawg-go", versions.amneziawg-go)
+  context  = "./images/amneziawg-go"
+  inherits = ["_common"]
+}
+
+target "amneziawg-tools" {
+  tags     = make_tags("amneziawg-tools", versions.amneziawg-tools)
+  context  = "./images/amneziawg-tools"
+  inherits = ["_common"]
+}
+
 target "byedpi" {
-  tags      = make_tags("byedpi", versions.byedpi)
-  context   = "./images/byedpi"
-  inherits  = ["_common"]
-  platforms = ["linux/amd64", "linux/arm/v7", "linux/arm64", "linux/ppc64le"]
+  tags     = make_tags("byedpi", versions.byedpi)
+  context  = "./images/byedpi"
+  inherits = ["_common"]
 }
 
 target "iceshrimp-net" {

@@ -8,11 +8,11 @@ ENV GOOS=${TARGETOS}
 ENV GOARCH=${TARGETARCH}
 ENV CGO_ENABLED=0
 
-WORKDIR $GOPATH/src/github.com/canonical
+WORKDIR $GOPATH/src
 
 RUN git clone --branch v${PEBBLE_VERSION} --depth 1 https://github.com/canonical/pebble.git
 
-WORKDIR $GOPATH/src/github.com/canonical/pebble
+WORKDIR $GOPATH/src/pebble
 
 RUN go build -o $GOPATH/bin/pebble ./cmd/pebble/
 
