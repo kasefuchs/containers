@@ -32,6 +32,7 @@ target "_common" {
 
 group "default" {
   targets = [
+    "amneziawg",
     "amneziawg-go",
     "amneziawg-tools",
     "byedpi",
@@ -52,6 +53,16 @@ target "amneziawg-go" {
 target "amneziawg-tools" {
   tags     = make_tags("amneziawg-tools", versions.amneziawg-tools)
   context  = "./images/amneziawg-tools"
+  inherits = ["_common"]
+}
+
+target "amneziawg" {
+  tags    = make_tags("amneziawg", versions.amneziawg-go)
+  context = "./images/amneziawg"
+  contexts = {
+    amneziawg-go    = "target:amneziawg-go"
+    amneziawg-tools = "target:amneziawg-tools"
+  }
   inherits = ["_common"]
 }
 

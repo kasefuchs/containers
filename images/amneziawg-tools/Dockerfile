@@ -12,10 +12,6 @@ WORKDIR /usr/src/amneziawg-tools/src
 
 RUN make install BINDIR=/usr/local/bin WITH_WGQUICK=yes LDFLAGS="-static -no-pie"
 
-FROM alpine:3.24.1
-
-RUN apk add --no-cache bash
+FROM scratch
 
 COPY --from=build /usr/local/bin/ /usr/local/bin/
-
-ENTRYPOINT ["/usr/local/bin/awg-quick"]

@@ -16,8 +16,6 @@ WORKDIR $GOPATH/src/amneziawg-go
 
 RUN make install BINDIR=/go/bin
 
-FROM alpine:3.24.1
+FROM scratch
 
 COPY --from=build /go/bin/amneziawg-go /usr/local/bin/amneziawg-go
-
-ENTRYPOINT ["/usr/local/bin/amneziawg-go"]
