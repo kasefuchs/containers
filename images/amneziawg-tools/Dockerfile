@@ -10,7 +10,7 @@ RUN git clone --branch v${AMNEZIAWG_TOOLS_VERSION} --depth 1 https://github.com/
 
 WORKDIR /usr/src/amneziawg-tools/src
 
-RUN make install BINDIR=/usr/local/bin WITH_WGQUICK=yes
+RUN make install BINDIR=/usr/local/bin WITH_WGQUICK=yes LDFLAGS="-static -no-pie"
 
 FROM alpine:3.24.1
 
