@@ -28,7 +28,7 @@ jobs:
         run: |
           echo "value=$(yq -r 'to_entries | map(.key + ":" + .value) | join(",")' versions.yaml)" >> "$GITHUB_OUTPUT"
       - name: Build and Push
-        uses: docker/bake-action@d3418bd7d0e9324001bca92fa8ba175ea7e6dc9b # v7.3.0
+        uses: docker/bake-action@018cb6412ab401ebaa809aa5f85966b74628600f # v7.4.0
         with:
           push: true
           vars: |
