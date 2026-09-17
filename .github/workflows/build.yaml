@@ -5,8 +5,9 @@ on:
       - main
     paths:
       - images/**/*
+      - versions.yaml
       - docker-bake.hcl
-      - .github/workflows/build-docker-images.yaml
+      - .github/workflows/build.yaml
 jobs:
   build-push:
     runs-on: ubuntu-latest
