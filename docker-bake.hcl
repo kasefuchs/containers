@@ -20,6 +20,7 @@ target "_versions" {
     GETTEXT_ENVSUBST_VERSION        = versions.gettext-envsubst
     ICESHRIMP_NET_VERSION           = versions.iceshrimp-net
     ICESHRIMP_OBJECTSTORAGE_VERSION = versions.iceshrimp-objectstorage
+    PAPERLESS_NGX_VERSION           = versions.paperless-ngx
     PEBBLE_VERSION                  = versions.pebble
     USQUE_VERSION                   = versions.usque
   }
@@ -37,6 +38,7 @@ group "default" {
     "amneziawg-tools",
     "byedpi",
     "iceshrimp-net",
+    "paperless-ngx",
     "pebble",
     "usque",
     "k8s-ci",
@@ -75,6 +77,12 @@ target "byedpi" {
 target "iceshrimp-net" {
   tags     = make_tags("iceshrimp.net", versions.iceshrimp-net)
   context  = "./images/iceshrimp.net"
+  inherits = ["_common"]
+}
+
+target "paperless-ngx" {
+  tags     = make_tags("paperless-ngx", versions.paperless-ngx)
+  context  = "./images/paperless-ngx"
   inherits = ["_common"]
 }
 
