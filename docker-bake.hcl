@@ -25,23 +25,8 @@ function "cache_from" {
   result = ["type=registry,ref=${registry}/cache:${name}"]
 }
 
-target "_versions" {
-  args = {
-    ALPINE_K8S_VERSION              = versions.alpine-k8s
-    AMNEZIAWG_GO_VERSION            = versions.amneziawg-go
-    AMNEZIAWG_TOOLS_VERSION         = versions.amneziawg-tools
-    BYEDPI_VERSION                  = versions.byedpi
-    GETTEXT_ENVSUBST_VERSION        = versions.gettext-envsubst
-    ICESHRIMP_NET_VERSION           = versions.iceshrimp-net
-    ICESHRIMP_OBJECTSTORAGE_VERSION = versions.iceshrimp-objectstorage
-    PAPERLESS_NGX_VERSION           = versions.paperless-ngx
-    PEBBLE_VERSION                  = versions.pebble
-    USQUE_VERSION                   = versions.usque
-  }
-}
-
 target "_common" {
-  inherits  = ["_versions"]
+  args      = { for k, v in versions : "${upper(replace(k, "-", "_"))}_VERSION" => v }
   platforms = ["linux/amd64", "linux/arm64"]
 }
 
@@ -60,20 +45,26 @@ group "default" {
   ]
 }
 
-target "amneziawg-go" {
-  tags       = tags("amneziawg-go", versions.amneziawg-go)
-  context    = "./images/amneziawg-go"
+target "image" {
+  name = replace(i.name, ".", "-")
+  matrix = {
+    i = [
+      { name = "amneziawg-go", version = "amneziawg-go" },
+      { name = "amneziawg-tools", version = "amneziawg-tools" },
+      { name = "byedpi", version = "byedpi" },
+      { name = "iceshrimp.net", version = "iceshrimp-net" },
+      { name = "paperless-ngx", version = "paperless-ngx" },
+      { name = "pebble", version = "pebble" },
+      { name = "usque", version = "usque" },
+      { name = "k8s-ci", version = "alpine-k8s" },
+      { name = "envsubst", version = "gettext-envsubst" }
+    ]
+  }
+  tags       = tags(i.name, versions[i.version])
+  context    = "./images/${i.name}"
   inherits   = ["_common"]
-  cache-to   = cache_to("amneziawg-go")
-  cache-from = cache_from("amneziawg-go")
-}
-
-target "amneziawg-tools" {
-  tags       = tags("amneziawg-tools", versions.amneziawg-tools)
-  context    = "./images/amneziawg-tools"
-  inherits   = ["_common"]
-  cache-to   = cache_to("amneziawg-tools")
-  cache-from = cache_from("amneziawg-tools")
+  cache-to   = cache_to(i.name)
+  cache-from = cache_from(i.name)
 }
 
 target "amneziawg" {
@@ -86,60 +77,4 @@ target "amneziawg" {
   inherits   = ["_common"]
   cache-to   = cache_to("amneziawg")
   cache-from = cache_from("amneziawg")
-}
-
-target "byedpi" {
-  tags       = tags("byedpi", versions.byedpi)
-  context    = "./images/byedpi"
-  inherits   = ["_common"]
-  cache-to   = cache_to("byedpi")
-  cache-from = cache_from("byedpi")
-}
-
-target "iceshrimp-net" {
-  tags       = tags("iceshrimp.net", versions.iceshrimp-net)
-  context    = "./images/iceshrimp.net"
-  inherits   = ["_common"]
-  cache-to   = cache_to("iceshrimp.net")
-  cache-from = cache_from("iceshrimp.net")
-}
-
-target "paperless-ngx" {
-  tags       = tags("paperless-ngx", versions.paperless-ngx)
-  context    = "./images/paperless-ngx"
-  inherits   = ["_common"]
-  cache-to   = cache_to("paperless-ngx")
-  cache-from = cache_from("paperless-ngx")
-}
-
-target "pebble" {
-  tags       = tags("pebble", versions.pebble)
-  context    = "./images/pebble"
-  inherits   = ["_common"]
-  cache-to   = cache_to("pebble")
-  cache-from = cache_from("pebble")
-}
-
-target "usque" {
-  tags       = tags("usque", versions.usque)
-  context    = "./images/usque"
-  inherits   = ["_common"]
-  cache-to   = cache_to("usque")
-  cache-from = cache_from("usque")
-}
-
-target "k8s-ci" {
-  tags       = tags("k8s-ci", versions.alpine-k8s)
-  context    = "./images/k8s-ci"
-  inherits   = ["_common"]
-  cache-to   = cache_to("k8s-ci")
-  cache-from = cache_from("k8s-ci")
-}
-
-target "envsubst" {
-  tags       = tags("envsubst", versions.gettext-envsubst)
-  context    = "./images/envsubst"
-  inherits   = ["_common"]
-  cache-to   = cache_to("envsubst")
-  cache-from = cache_from("envsubst")
 }
