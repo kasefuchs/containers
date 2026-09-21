@@ -8,6 +8,9 @@ on:
       - versions.yaml
       - docker-bake.hcl
       - .github/workflows/build.yaml
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   build-push:
     runs-on: ubuntu-latest
