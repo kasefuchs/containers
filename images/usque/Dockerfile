@@ -16,7 +16,7 @@ WORKDIR $GOPATH/src/usque
 
 RUN go build -o $GOPATH/bin/usque .
 
-FROM alpine:3.24.1
+FROM alpine:3.24.2
 
 # Install curl for health checks.
 RUN apk --no-cache add curl

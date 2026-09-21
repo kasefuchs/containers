@@ -1,4 +1,4 @@
-FROM alpine:3.24.1 AS build
+FROM alpine:3.24.2 AS build
 
 RUN apk add --no-cache build-base git linux-headers
 
