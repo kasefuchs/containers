@@ -16,7 +16,7 @@ WORKDIR $GOPATH/src/pebble
 
 RUN go build -o $GOPATH/bin/pebble ./cmd/pebble/
 
-FROM alpine:3.24.1
+FROM alpine:3.24.2
 
 COPY --from=build /go/bin/pebble /usr/local/bin/pebble
 
