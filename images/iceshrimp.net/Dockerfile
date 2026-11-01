@@ -1,6 +1,6 @@
 ARG ICESHRIMP_NET_VERSION
 
-FROM --platform=$BUILDPLATFORM iceshrimp.dev/iceshrimp/dotnet-sdk:10.0-alpine AS build
+FROM --platform=$BUILDPLATFORM iceshrimp.dev/iceshrimp/dotnet-sdk:11.0-alpine AS build
 
 RUN apk add --no-cache git
 
