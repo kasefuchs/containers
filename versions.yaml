@@ -2,7 +2,7 @@
 alpine-k8s: "1.37.2"
 
 # renovate: datasource=github-tags depName=amnezia-vpn/amneziawg-go
-amneziawg-go: "3.1.20260828"
+amneziawg-go: "3.1.20261116"
 
 # renovate: datasource=github-releases depName=amnezia-vpn/amneziawg-tools
 amneziawg-tools: "3.1.20260812"
